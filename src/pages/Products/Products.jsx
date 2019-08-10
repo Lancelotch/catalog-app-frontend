@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { Fragment } from "react";
+import Product from "../../components/Product/Product";
+import { dummyProducts } from "../../dataSource/dummyProducts";
 
 const Products = () => {
-    return(
-        <span>Product List</span>
-    )
-}
+  return (
+    <Fragment>
+      {dummyProducts.map(product => (
+        <Product key = {product.id} product={product} />
+      ))}
+    </Fragment>
+  );
+};
 
 export default Products;

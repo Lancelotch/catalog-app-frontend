@@ -11,7 +11,7 @@ function App() {
     <Router>
       <Route exact path="/" component={() => <Redirect to="/products" />} />
       {routes.map(({ path, component }) => (
-        <Route render key={path} path={path} component={component} />
+        <Route key={path} path={path} component={component} />
       ))}
     </Router>
   );
