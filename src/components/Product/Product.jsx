@@ -1,27 +1,29 @@
 import React, { useState, useEffect } from "react";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
+import { Card, Button, Icon } from "antd";
 import "./style.sass";
-//
+import VariantColor from "../VariantColor";
+import VariantSize from "../VariantSize/VariantColor";
+
+const {Meta} = Card;
 const Product = ({ product }) => {
-  const { id, name, price, images, variants, isWishlist } = product;
+  const { id, name, price, images, variant, isWishlist } = product;
   const [image, setImage] = useState(images[0]);
   const [showImage, setShowImage] = useState(image.front);
-  const changeImageByColor = idColor => {
+  const actionVariantColor = idColor => {
     setImage(() => images.find(image => image.idColor === idColor));
   };
-  useEffect(()=>{
-    setShowImage(image.front)
-  },[image])
+  const actionBuy = () => {
+    console.log('buying');
+  }
+  useEffect(() => {
+    setShowImage(image.front);
+  }, [image]);
 
   return (
-    <Card key={id} className="cd-card-product__container">
+    <Card
+    style={{ width: 300 }}
+    cover={
       <img
-        className="cd-card-product__media"
         alt={name}
         src={showImage}
         onMouseEnter={() => {
@@ -31,13 +33,21 @@ const Product = ({ product }) => {
           setShowImage(image.front);
         }}
       />
-      <CardContent>
-        <span>{name}</span>
-      </CardContent>
-      <CardActions>
-        <Button onClick={() => changeImageByColor("002")}>Merah</Button>
-      </CardActions>
-    </Card>
+    }
+    actions={[
+      <Icon type="setting" key="setting" />,
+      <Icon type="heart" key="wishlist" style={{fontSize: "24px"}}/>
+    ]}
+  >
+  <Meta
+      title={name}
+      description={<div className="cd-card-product__action">
+        <span>{price}</span>
+        <VariantSize sizes={variant.sizes} />
+        <VariantColor colors={variant.colors} onClick={actionVariantColor} />
+      </div>}
+    />
+  </Card>
   );
 };
 
