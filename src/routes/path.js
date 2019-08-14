@@ -1,8 +1,10 @@
-const PRODUCT = '/products'
-const PRODUCT_DETAIL = '/product-detail/:productId';
+const PRODUCT = '/product';
+const PRODUCTS = '/products';
+const PRODUCT_DETAIL = `${PRODUCT}/:productId`;
 
 const PATH_URL = {
     PRODUCT,
+    PRODUCTS,
     PRODUCT_DETAIL
 }
 
