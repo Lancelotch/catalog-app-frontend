@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import ImageGallery from "react-image-gallery";
 import { Lightbox } from "react-modal-image";
+import { Card } from "antd";
+import "./style.sass";
 
 const ProductDetail = () => {
   const [imageGalleries, setImageGalleries] = useState();
   const [idxSlide, setIdxSlide] = useState(0);
-  const [modalImage, setModalImage] = useState({open :false, src: ""});
+  const [modalImage, setModalImage] = useState({ open: false, src: "" });
 
   const imageList = [
     {
@@ -26,34 +28,48 @@ const ProductDetail = () => {
     setImageGalleries(imageList);
   }, []);
 
-  const handleOnClickImageGalery = (src)=> {
-    setModalImage({...modalImage, src, open: true});
-  }
+  const handleOnClickImageGalery = src => {
+    setModalImage({ ...modalImage, src, open: true });
+  };
 
   return (
-    <div>
-      <ImageGallery
-        startIndex={idxSlide}
-        showFullscreenButton={false}
-        showPlayButton={false}
-        onSlide={idx => setIdxSlide(idx)}
-        lazyLoad={true}
-        items={imageGalleries}
-        disableArrowKeys={true}
-        showNav={false}
-        useBrowserFullscreen
-        onClick={event => {handleOnClickImageGalery(event.target.src)}}
-      />
+    <Card
+      title={
+        <React.Fragment>
+          <span>Indrianiya Flowery Knot Mini Dress</span>
+          <br />
+          <span>170000</span>
+        </React.Fragment>
+      }
+      cover={
+        <ImageGallery
+          startIndex={idxSlide}
+          showFullscreenButton={false}
+          showPlayButton={false}
+          onSlide={idx => setIdxSlide(idx)}
+          lazyLoad={true}
+          items={imageGalleries}
+          disableArrowKeys={true}
+          showNav={false}
+          useBrowserFullscreen
+          onClick={event => {
+            handleOnClickImageGalery(event.target.src);
+          }}
+        />
+      }
+    >
       {modalImage.open && (
         <Lightbox
           medium={modalImage.src}
           large={modalImage.src}
           alt={"some name dress"}
-          onClose={() => {setModalImage({...modalImage, open: false});}}
+          onClose={() => {
+            setModalImage({ ...modalImage, open: false });
+          }}
           hideDownload
         />
       )}
-    </div>
+    </Card>
   );
 };
 
