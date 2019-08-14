@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Card, Button, Icon } from "antd";
+import { Card, Button, Icon, Row, Col } from "antd";
 import "./style.sass";
 import VariantColor from "../VariantColor";
 import VariantSize from "../VariantSize/VariantColor";
 
-const {Meta} = Card;
+const { Meta } = Card;
 const Product = ({ product }) => {
   const { id, name, price, images, variant, isWishlist } = product;
   const [image, setImage] = useState(images[0]);
@@ -13,41 +13,44 @@ const Product = ({ product }) => {
     setImage(() => images.find(image => image.idColor === idColor));
   };
   const actionBuy = () => {
-    console.log('buying');
-  }
+    console.log("buying");
+  };
   useEffect(() => {
     setShowImage(image.front);
   }, [image]);
 
   return (
     <Card
-    style={{ width: 300 }}
-    cover={
-      <img
-        alt={name}
-        src={showImage}
-        onMouseEnter={() => {
-          setShowImage(image.back);
-        }}
-        onMouseOut={() => {
-          setShowImage(image.front);
-        }}
-      />
-    }
-    actions={[
-      <Icon type="setting" key="setting" />,
-      <Icon type="heart" key="wishlist" style={{fontSize: "24px"}}/>
-    ]}
-  >
-  <Meta
-      title={name}
-      description={<div className="cd-card-product__action">
-        <span>{price}</span>
-        <VariantSize sizes={variant.sizes} />
-        <VariantColor colors={variant.colors} onClick={actionVariantColor} />
-      </div>}
-    />
-  </Card>
+    hoverable
+      style={{ width: "100%" }}
+      cover={
+        <img
+          alt={name}
+          src={showImage}
+          onMouseEnter={() => {
+            setShowImage(image.back);
+          }}
+          onMouseOut={() => {
+            setShowImage(image.front);
+          }}
+        />
+      }
+    >
+    <Meta
+        title={name}
+        description={
+          <div>
+          <Row >
+            <Col xs={20}><VariantColor colors={variant.colors} onClick={actionVariantColor} /></Col>
+            <Col xs={4}><Icon type="heart" key="wishlist" style={{ fontSize: "28px", float: "center" }} /></Col>
+          </Row>
+          <Row>
+            <Col xs={24}>{price}</Col>
+          </Row>
+          </div>
+        }
+        />
+    </Card>
   );
 };
 

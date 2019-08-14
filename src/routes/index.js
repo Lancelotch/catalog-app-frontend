@@ -1,5 +1,5 @@
-import Products from "../pages/Products";
-import ProductDetail from "../pages/ProductDetail";
+import Products from "../pages/Products/Products";
+import ProductDetail from "../pages/ProductDetail/ProductDetail";
 import PATH_URL from "./path";
 
 const routes = [
