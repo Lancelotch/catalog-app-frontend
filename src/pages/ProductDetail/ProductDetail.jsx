@@ -100,6 +100,7 @@ const ProductDetail = props => {
             )}
           </Card>
           <Card>
+            <span>Pilih variant warna & ukuran :</span><br/>
             <span>Warna :</span>
             <VariantColor
               colors={dataProduct.variant.colors}
