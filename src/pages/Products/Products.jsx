@@ -16,7 +16,7 @@ const Products = props => {
       const productList = snapshot.val();
       setProducts(productList);
     });
-  }, []);
+  },[]);
   return (
     <Fragment>
       <Card>

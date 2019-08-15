@@ -4,7 +4,6 @@ import { Lightbox } from "react-modal-image";
 import { Card, Button, Collapse } from "antd";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
-import { dummyProductDetail } from "../../dataSource/dummyProductDetail";
 import "./style.sass";
 import VariantColor from "../../components/VariantColor/VariantColor";
 import VariantSize from "../../components/VariantSize/VariantColor";

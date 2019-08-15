@@ -5,7 +5,7 @@ import VariantColor from "../VariantColor";
 
 const { Meta } = Card;
 const Product = (props) => {
-  const { id, name, price, images, variant, isWishlist } = props.product;
+  const { id, name, price, images, variant } = props.product;
   const [image, setImage] = useState(images[0]);
   const [showImage, setShowImage] = useState(image.front);
   const actionVariantColor = idColor => {
