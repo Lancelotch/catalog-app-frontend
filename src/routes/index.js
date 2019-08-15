@@ -4,7 +4,7 @@ import PATH_URL from "./path";
 
 const routes = [
   {
-    path: PATH_URL.PRODUCT,
+    path: PATH_URL.PRODUCTS,
     component: Products
   },
   {
