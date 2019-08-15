@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import ImageGallery from "react-image-gallery";
 import { Lightbox } from "react-modal-image";
-import { Card } from "antd";
+import { Card, Button, Collapse } from "antd";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import { dummyProductDetail } from "../../dataSource/dummyProductDetail";
 import "./style.sass";
 import VariantColor from "../../components/VariantColor/VariantColor";
 import VariantSize from "../../components/VariantSize/VariantColor";
+import Testimony from "../../components/Testimony/Testimony";
+
+const { Panel } = Collapse;
 
 const ProductDetail = props => {
   const productId = props.match.params.productId;
@@ -35,14 +38,13 @@ const ProductDetail = props => {
   const convertImageGalleries = () => {
     const imagesByColorWithoutId = imagesByColor;
     const imageList = [];
-    Object.values(imagesByColorWithoutId).forEach(
-      (image, idx) => {
-          idx > 0 && imageList.push({
-            original: image,
-            thumbnail: image
-          })
-        }
-    );
+    Object.values(imagesByColorWithoutId).forEach((image, idx) => {
+      idx > 0 &&
+        imageList.push({
+          original: image,
+          thumbnail: image
+        });
+    });
     setImageGalleries(imageList);
   };
 
@@ -100,7 +102,8 @@ const ProductDetail = props => {
             )}
           </Card>
           <Card>
-            <span>Pilih variant warna & ukuran :</span><br/>
+            <span>Pilih variant warna & ukuran :</span>
+            <br />
             <span>Warna :</span>
             <VariantColor
               colors={dataProduct.variant.colors}
@@ -112,6 +115,26 @@ const ProductDetail = props => {
               sizes={dataProduct.variant.sizes}
               onClick={actionVariantSize}
             />
+          </Card>
+          <Card>
+            <Button
+              icon="heart"
+              size="large"
+            >
+              Simpan
+            </Button>
+            <Button type="primary" size="large" >
+              Beli Sekarang
+            </Button>
+          </Card>
+          <Collapse defaultActiveKey={['1']}>
+            <Panel header="Detail & Ukuran" key={1}>
+              <span>{dataProduct.description}</span>
+            </Panel>
+          </Collapse>
+          <Card>
+                <span>{`Testimony Sista (${dataProduct.testimonies.length})`}</span>
+              <Testimony testimonies={dataProduct.testimonies} />
           </Card>
         </React.Fragment>
       )}
