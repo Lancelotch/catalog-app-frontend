@@ -1,4 +1,4 @@
-export const dummyProducts = [
+export const dummyProductDetail = [
     {
       id: "P001",
       name: "Indrianiya Flowery Knot Mini Dress",
