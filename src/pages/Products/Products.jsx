@@ -1,15 +1,22 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Product from "../../components/Product";
 import { withRouter } from "react-router-dom";
-import { dummyProducts } from "../../dataSource/dummyProducts";
+import { withFirebase } from "../../hoc/Firebase";
 import { compose } from "recompose";
 import PATH_URL from "../../routes/path";
 import { Card, Select } from "antd";
 import "./style.sass";
+
 const { Option } = Select;
 
-
 const Products = props => {
+  const [products, setProducts] = useState();
+  useEffect(() => {
+    props.firebase.products().on("value", snapshot => {
+      const productList = snapshot.val();
+      setProducts(productList);
+    });
+  }, []);
   return (
     <Fragment>
       <Card>
@@ -24,17 +31,21 @@ const Products = props => {
           <Option value="large_dress">Large Dress</Option>
         </Select>
       </Card>
-      {dummyProducts.map(product => (
-        <Product
-          key={product.id}
-          product={product}
-          onClick={productId =>
-            props.history.push(`${PATH_URL.PRODUCT}/${productId}`)
-          }
-        />
-      ))}
+      {products &&
+        products.map(product => (
+          <Product
+            key={product.id}
+            product={product}
+            onClick={productId =>
+              props.history.push(`${PATH_URL.PRODUCT}/${productId}`)
+            }
+          />
+        ))}
     </Fragment>
   );
 };
 
-export default compose(withRouter)(Products);
+export default compose(
+  withRouter,
+  withFirebase
+)(Products);

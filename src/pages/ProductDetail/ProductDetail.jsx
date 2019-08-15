@@ -9,6 +9,7 @@ import "./style.sass";
 import VariantColor from "../../components/VariantColor/VariantColor";
 import VariantSize from "../../components/VariantSize/VariantColor";
 import Testimony from "../../components/Testimony/Testimony";
+import { withFirebase } from "../../hoc/Firebase";
 
 const { Panel } = Collapse;
 
@@ -21,10 +22,13 @@ const ProductDetail = props => {
   const [imagesByColor, setImagesByColor] = useState();
 
   useEffect(() => {
-    const productById = dummyProductDetail.find(product => {
-      return product.id === productId;
+    props.firebase.products().on("value", snapshot => {
+      const productList = snapshot.val();
+      const productById = productList.find(product => {
+        return product.id === productId;
+      });
+      setDataProduct(productById);
     });
-    setDataProduct(productById);
   }, []);
 
   useEffect(() => {
@@ -36,10 +40,10 @@ const ProductDetail = props => {
   }, [imagesByColor]);
 
   const convertImageGalleries = () => {
-    const imagesByColorWithoutId = imagesByColor;
+    const imagesByColorWithoutId = {...imagesByColor};
+    delete imagesByColorWithoutId.idColor;
     const imageList = [];
-    Object.values(imagesByColorWithoutId).forEach((image, idx) => {
-      idx > 0 &&
+    Object.values(imagesByColorWithoutId).forEach(image => {
         imageList.push({
           original: image,
           thumbnail: image
@@ -117,24 +121,21 @@ const ProductDetail = props => {
             />
           </Card>
           <Card>
-            <Button
-              icon="heart"
-              size="large"
-            >
+            <Button icon="heart" size="large">
               Simpan
             </Button>
-            <Button type="primary" size="large" >
+            <Button type="primary" size="large">
               Beli Sekarang
             </Button>
           </Card>
-          <Collapse defaultActiveKey={['1']}>
+          <Collapse defaultActiveKey={["1"]}>
             <Panel header="Detail & Ukuran" key={1}>
               <span>{dataProduct.description}</span>
             </Panel>
           </Collapse>
           <Card>
-                <span>{`Testimony Sista (${dataProduct.testimonies.length})`}</span>
-              <Testimony testimonies={dataProduct.testimonies} />
+            <span>{`Testimony Sista (${dataProduct.testimonies.length})`}</span>
+            <Testimony testimonies={dataProduct.testimonies} />
           </Card>
         </React.Fragment>
       )}
@@ -142,4 +143,7 @@ const ProductDetail = props => {
   );
 };
 
-export default compose(withRouter)(ProductDetail);
+export default compose(
+  withRouter,
+  withFirebase
+)(ProductDetail);

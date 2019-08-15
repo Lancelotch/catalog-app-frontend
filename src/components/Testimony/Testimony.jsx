@@ -6,7 +6,7 @@ const Testimony = ({ testimonies }) => {
   return (
     <Fragment>
       {testimonies.map(testimony => (
-        <div>
+        <div key={testimony.id}>
             <span><Avatar size="large" src={testimony.avatar} />{testimony.username} {testimony.createdAt}</span>
             <span>{testimony.message}</span>
         </div>
