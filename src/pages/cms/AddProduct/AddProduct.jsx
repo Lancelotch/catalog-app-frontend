@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {Fragment} from 'react';
+import FormProduct from '../../../containers/FormProduct/FormProduct';
 
 const AddProduct = () => {
     return(
-        <div>Add Product</div>
+        <Fragment>
+            <FormProduct/>
+        </Fragment>
     )
 }
 

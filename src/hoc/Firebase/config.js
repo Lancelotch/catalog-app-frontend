@@ -1,5 +1,6 @@
 import app from "firebase/app";
 import "firebase/database";
+import "firebase/storage";
 
 const REACT_APP_FIREBASE_API_KEY = process.env.REACT_APP_FIREBASE_API_KEY;
 const REACT_APP_FIREBASE_AUTH_DOMAIN = process.env.REACT_APP_FIREBASE_AUTH_DOMAIN;
@@ -23,10 +24,13 @@ class Firebase {
   constructor() {
     app.initializeApp(config);
     this.db = app.database();
+    this.storage = app.storage();
   }
 
   product = id => this.db.ref(`products`).orderByChild('id').equalTo(id);
   products = () => this.db.ref(`products`);
+
+  uploadProduct = () => this.storage.ref(`images`);
   
 }
 export default Firebase;

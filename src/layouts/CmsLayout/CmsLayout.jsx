@@ -28,8 +28,8 @@ const CmsLayout = props => {
                 </span>
               }
             >
-              <Menu.Item key="1" onClick={()=>props.history.push(PATH_URL.LIST_PRODUCT)}>List Product</Menu.Item>
-              <Menu.Item key="2" onClick={()=>props.history.push(PATH_URL.ADD_PRODUCT)}>Add Product</Menu.Item>
+              <Menu.Item key="1" onClick={()=>props.history.push(PATH_URL.ADD_PRODUCT)}>Add Product</Menu.Item>
+              <Menu.Item key="2" onClick={()=>props.history.push(PATH_URL.LIST_PRODUCT)}>List Product</Menu.Item>
             </SubMenu>
           </Menu>
         </Sider>
