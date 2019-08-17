@@ -5,9 +5,9 @@ import { Card, Button, Collapse } from "antd";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import "./style.sass";
-import VariantColor from "../../components/VariantColor/VariantColor";
-import VariantSize from "../../components/VariantSize/VariantColor";
-import Testimony from "../../components/Testimony/Testimony";
+import VariantColor from "../../components/VariantColor";
+import VariantSize from "../../components/VariantSize";
+import Testimony from "../../components/Testimony";
 import { withFirebase } from "../../hoc/Firebase";
 
 const { Panel } = Collapse;
