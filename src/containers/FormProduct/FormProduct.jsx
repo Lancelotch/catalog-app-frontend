@@ -36,7 +36,6 @@ const FormProduct = props => {
           handleSubmit,
           setFieldValue
         }) => {
-          console.log(values)
           return (
             <Form onSubmit={handleSubmit}>
               <Form.Item>
