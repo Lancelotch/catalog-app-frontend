@@ -18,6 +18,7 @@ function App() {
   return (
     <Router>
       <Route exact path="/" component={() => <Redirect to="/products" />} />
+      <Route exact path="/cms" component={() => <Redirect to="/cms/add-product" />} />
       {routes.map(({ path, component, layout }) => (
         <RouteWithLayout key={path} path={path} component={component} layout={layout}/>
       ))}
