@@ -11,3 +11,6 @@ How to start this project to your local manchine
 - Clone this project
 - Install Depedency
 - npm start
+
+How to open cms page
+- hit location localhost:port/cms
