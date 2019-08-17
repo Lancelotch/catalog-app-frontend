@@ -70,7 +70,7 @@ const ProductInformation = props => {
           <Col span={5}>
             <Row type="flex" align="middle">
               <span className="cd-label-content">Description</span>
-              <Tag className="cd-tag">required</Tag>
+              {/* <Tag className="cd-tag">required</Tag> */}
             </Row>
           </Col>
           <Col md={19}>
@@ -137,9 +137,9 @@ const ProductInformation = props => {
                 props.errors.price && props.touched.price ? "error" : "default"
               }
             />
-            {(props.errors.price || price < 1) && (
+            {props.errors.price && (
               <span className="cd-text-error-message">
-                {"price tidak boleh kosong"}
+                {props.errors.price}
               </span>
             )}
           </Col>

@@ -5,8 +5,9 @@ import { withFirebase } from "../../hoc/Firebase";
 import { compose } from "recompose";
 import { schemaProduct } from "./schema";
 import { Form, Select, Button } from "antd";
-import ProductInformation from "../ProductInformation/ProductInformation";
+import ProductInformation from "../ProductInformation";
 import "./style.sass";
+import ProductVariants from "../ProductVariants/ProductVariants";
 const { Option } = Select;
 
 const FormProduct = props => {
@@ -47,6 +48,16 @@ const FormProduct = props => {
                   touched={touched}
                   values={values}
                 />
+              </Form.Item>
+              <Form.Item>
+                <ProductVariants 
+                handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  errors={errors}
+                  setFieldValue={setFieldValue}
+                  touched={touched}
+                  values={values}
+                  />
               </Form.Item>
               <div style={{ textAlign: "right", margin: 24 }}>
               <Button type="primary" size="large" htmlType="submit">

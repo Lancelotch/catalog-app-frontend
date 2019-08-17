@@ -1,68 +1,68 @@
-const variantColors = [
+const variantColor = [
   {
-    id: "#FFFFFF",
+    id: "FFFFFF",
     name: "White"
   },
   {
-    id: "#C0C0C0",
+    id: "C0C0C0",
     name: "Silver"
   },
   {
-    id: "#808080",
+    id: "808080",
     name: "Gray"
   },
   {
-    id: "#000000",
+    id: "000000",
     name: "Black"
   },
   {
-    id: "#FF0000",
+    id: "FF0000",
     name: "Red"
   },
   {
-    id: "#800000",
+    id: "800000",
     name: "Maroon"
   },
   {
-    id: "#FFFF00",
+    id: "FFFF00",
     name: "Yellow"
   },
   {
-    id: "#808000",
+    id: "808000",
     name: "Olive"
   },
   {
-    id: "#00FF00",
+    id: "00FF00",
     name: "Lime"
   },
   {
-    id: "#008000",
+    id: "008000",
     name: "Green"
   },
   {
-    id: "#00FFFF",
+    id: "00FFFF",
     name: "Aqua"
   },
   {
-    id: "#008080",
+    id: "008080",
     name: "Teal"
   },
   {
-    id: "#0000FF",
+    id: "0000FF",
     name: "Blue"
   },
   {
-    id: "#000080",
+    id: "000080",
     name: "Navy"
   },
   {
-    id: "#FF00FF",
+    id: "FF00FF",
     name: "FUCHSIA"
   },
   {
-    id: "#800080",
+    id: "800080",
     name: "PURPLE"
   }
 ];
 
-export default variantColors;
+export default variantColor;
