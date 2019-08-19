@@ -6,11 +6,12 @@ export const schemaProduct = Yup.object().shape({
   category: Yup.string().required(),
   quantity: Yup.string().required(),
   price: Yup.number().required().min(1),
-  images: Yup.object().shape({
+  images: Yup.array().of(
+    Yup.object().shape({
     front: Yup.string().required,
     back: Yup.string().required,
     other: Yup.string()
-  }),
+  })),
   variants: Yup.array().of(
     Yup.object().shape({
       color: Yup.string().required(),

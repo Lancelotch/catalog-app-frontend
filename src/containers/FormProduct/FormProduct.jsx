@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useContext } from "react";
 import { withRouter } from "react-router-dom";
 import { Formik } from "formik";
 import { withFirebase } from "../../hoc/Firebase";
@@ -7,23 +7,20 @@ import { schemaProduct } from "./schema";
 import { Form, Select, Button } from "antd";
 import ProductInformation from "../ProductInformation";
 import "./style.sass";
-import ProductVariants from "../ProductVariants/ProductVariants";
+import ProductVariants from "../ProductVariants";
+import { ProductContext } from "../../pages/cms/AddProduct/GlobalStateProduct";
 const { Option } = Select;
 
 const FormProduct = props => {
-  const initialState = {
-    productName: "",
-    description: "",
-    category: "",
-    price: 0
-  }
-  const [initialValueProduct, setinitialValueProduct] = useState(initialState)
+  const context = useContext(ProductContext);
+  
   const handleSubmit = () => {};
 
   return (
     <Fragment>
       <Formik
-        initialValues={initialValueProduct}
+        enableReinitialize
+        initialValues={context.initialState}
         validationSchema={schemaProduct}
         onSubmit={({}) => {}}
       >
@@ -34,7 +31,9 @@ const FormProduct = props => {
           handleChange,
           handleBlur,
           handleSubmit,
-          setFieldValue
+          setFieldValue,
+          onReset,
+          handleReset
         }) => {
           return (
             <Form onSubmit={handleSubmit}>
@@ -50,12 +49,14 @@ const FormProduct = props => {
               </Form.Item>
               <Form.Item>
                 <ProductVariants 
-                handleChange={handleChange}
+                  handleChange={handleChange}
                   handleBlur={handleBlur}
                   errors={errors}
                   setFieldValue={setFieldValue}
                   touched={touched}
-                  values={values}
+                  values={values.variants}
+                  onReset={onReset}
+                  handleReset={handleReset}
                   />
               </Form.Item>
               <div style={{ textAlign: "right", margin: 24 }}>
