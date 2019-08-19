@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useContext,Fragment } from "react";
 import { Card, Row, Col, Tag, Button, Select } from "antd";
 import "./style.sass";
 import variantColor from "../../dataSource/variantColor";
@@ -7,10 +7,11 @@ import Upload from "../../components/Upload";
 import { withFirebase } from "../../hoc/Firebase";
 import { compose } from "recompose";
 import {FieldArray} from 'formik';
-
+import { ProductContext } from "../../pages/cms/AddProduct/GlobalStateProduct";
 const { Option } = Select;
 
 const ProductVariant = props => {
+  const context = useContext(ProductContext);
   const [imageUrl, setImageUrl] = useState([]);
   const [loading, setLoading] = useState([]);
   const [disable, setDisable] = useState([]);
@@ -229,9 +230,6 @@ const ProductVariant = props => {
           </Row>
         </div>
       </Card>
-      <div style={{ padding: 24, textAlign: "right" }}>
-        <Button icon="plus"> Variant</Button>
-      </div>
       </Fragment>
   );
 };

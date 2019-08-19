@@ -13,7 +13,7 @@ const { Option } = Select;
 
 const FormProduct = props => {
   const context = useContext(ProductContext);
-  
+  console.log(context);
   const handleSubmit = () => {};
 
   return (

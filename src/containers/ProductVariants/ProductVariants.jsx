@@ -1,21 +1,19 @@
-import React, { useState } from "react";
-import { Card, Row, Col, Tag, Button, Select } from "antd";
+import React,{useContext} from "react";
+import { Card, Button} from "antd";
 import "./style.sass";
-import variantColor from "../../dataSource/variantColor";
-import variantSize from "../../dataSource/variantSize";
-import Upload from "../../components/Upload";
 import { withFirebase } from "../../hoc/Firebase";
 import { compose } from "recompose";
-import { FieldArray } from "formik";
 import ProductVariant from "../ProductVariant/ProductVariant";
-
-const { Option } = Select;
+import { ProductContext } from "../../pages/cms/AddProduct/GlobalStateProduct";
 
 const ProductVariants = props => {
+  const context = useContext(ProductContext);
   return (
     <Card title={"Product Variant & Image"}>
       {props.values.map((variant, index) => (
         <ProductVariant
+          key={index}
+          index={index}
           handleChange={props.handleChange}
           handleBlur={props.handleBlur}
           errors={props.errors}
@@ -27,6 +25,9 @@ const ProductVariants = props => {
           variant={variant}
         />
       ))}
+      <div style={{ padding: 24, textAlign: "right" }}>
+        <Button icon="plus" onClick={()=>context.addProductVariant()}> Variant</Button>
+      </div>
     </Card>
   );
 };

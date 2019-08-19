@@ -3,14 +3,6 @@ import React, { useState } from "react";
 const ProductContext = React.createContext();
 
 const GlobalStateProduct = props => {
-  const initialValues = {
-    productName: "",
-    description: "",
-    category: "",
-    price: 0,
-    variants: [],
-    images: []
-  };
   const productVariant = {
     color: "",
     sizes: [],
@@ -20,6 +12,15 @@ const GlobalStateProduct = props => {
       other: ""
     }
   };
+  const initialValues = {
+    productName: "",
+    description: "",
+    category: "",
+    price: 0,
+    variants: [{...productVariant}],
+    images: []
+  };
+
   const [initialState, setInitialState] = useState(initialValues);
   const addProductVariant = () => {
     setInitialState({
@@ -35,10 +36,10 @@ const GlobalStateProduct = props => {
         addProductVariant: addProductVariant
       }}
     >
-      {props.Children}
+      {props.children}
     </ProductContext.Provider>
   );
 };
 
 export default GlobalStateProduct;
-export {ProductContext};
+export { ProductContext };
