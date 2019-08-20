@@ -15,14 +15,15 @@ const FormProduct = props => {
   const context = useContext(ProductContext);
   console.log(context);
   const handleSubmit = () => {};
-
   return (
     <Fragment>
       <Formik
         enableReinitialize
         initialValues={context.initialState}
         validationSchema={schemaProduct}
-        onSubmit={({}) => {}}
+        onSubmit={(val) => {
+          console.log(val)
+        }}
       >
         {({
           values,
@@ -47,7 +48,7 @@ const FormProduct = props => {
                   values={values}
                 />
               </Form.Item>
-              <Form.Item>
+              {/* <Form.Item>
                 <ProductVariants 
                   handleChange={handleChange}
                   handleBlur={handleBlur}
@@ -58,7 +59,7 @@ const FormProduct = props => {
                   onReset={onReset}
                   handleReset={handleReset}
                   />
-              </Form.Item>
+              </Form.Item> */}
               <div style={{ textAlign: "right", margin: 24 }}>
               <Button type="primary" size="large" htmlType="submit">
                 {"Add Product"}

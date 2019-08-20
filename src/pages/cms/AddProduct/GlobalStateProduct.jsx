@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-
+import uuidv4 from 'uuid/v4';
+import _ from 'lodash';
 const ProductContext = React.createContext();
 
 const GlobalStateProduct = props => {
   const productVariant = {
-    color: "",
-    sizes: [],
-    images: {
-      front: "",
-      back: "",
-      other: ""
+    [uuidv4()] : {
+        color: "",
+        sizes: [],
+        images: {
+            front: "",
+            back: "",
+            other: ""
+        }
     }
   };
   const initialValues = {
@@ -17,23 +20,28 @@ const GlobalStateProduct = props => {
     description: "",
     category: "",
     price: 0,
-    variants: [{...productVariant}],
-    images: []
+    variants: {...productVariant}
   };
 
-  const [initialState, setInitialState] = useState(initialValues);
+  const [state, setState] = useState(initialValues);
   const addProductVariant = () => {
-    setInitialState({
-      ...initialState,
-      variants: [...initialState.variants, productVariant]
+    setState({
+      ...state,
+      variants: {...state.variants, productVariant}
     });
+  };
+
+  const removeProductVariant = (id) => {
+    const removeVariant = _.omit(state, id)
+    setState(removeVariant);
   };
 
   return (
     <ProductContext.Provider
       value={{
-        initialState: initialState,
-        addProductVariant: addProductVariant
+        initialState: state,
+        addProductVariant: addProductVariant,
+        removeProductVariant: removeProductVariant
       }}
     >
       {props.children}

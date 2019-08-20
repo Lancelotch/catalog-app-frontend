@@ -131,7 +131,7 @@ const ProductVariant = props => {
 
   return (
       <Fragment>
-      <Card>
+      <Card title={<Fragment><span>Variant - {props.index+1} </span> {props.index>0 && <span style={{float: "right" }}><Button>Cancle</Button></span>}</Fragment>}>
         <div style={{ padding: 24 }}>
           <Row type="flex" align="middle">
             <Col span={5}>

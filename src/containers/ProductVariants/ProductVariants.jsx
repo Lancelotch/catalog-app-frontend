@@ -8,9 +8,10 @@ import { ProductContext } from "../../pages/cms/AddProduct/GlobalStateProduct";
 
 const ProductVariants = props => {
   const context = useContext(ProductContext);
+  console.log(Object.keys(props.values))
   return (
     <Card title={"Product Variant & Image"}>
-      {props.values.map((variant, index) => (
+      {/* {Object.keys(props.values).map((variant, index) => (
         <ProductVariant
           key={index}
           index={index}
@@ -24,7 +25,7 @@ const ProductVariants = props => {
           handleReset={props.handleReset}
           variant={variant}
         />
-      ))}
+      ))} */}
       <div style={{ padding: 24, textAlign: "right" }}>
         <Button icon="plus" onClick={()=>context.addProductVariant()}> Variant</Button>
       </div>
