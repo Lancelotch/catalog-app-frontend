@@ -1,19 +1,20 @@
-import React,{useContext} from "react";
-import { Card, Button} from "antd";
+import React, { useContext } from "react";
+import { Card, Button } from "antd";
 import "./style.sass";
 import { withFirebase } from "../../hoc/Firebase";
 import { compose } from "recompose";
-import ProductVariant from "../ProductVariant/ProductVariant";
+import ProductVariant from "../ProductVariant";
 import { ProductContext } from "../../pages/cms/AddProduct/GlobalStateProduct";
 
 const ProductVariants = props => {
   const context = useContext(ProductContext);
-  console.log(Object.keys(props.values))
+  //console.log({ values: props.values, objekVal: Object.keys(props.values) });
   return (
     <Card title={"Product Variant & Image"}>
-      {/* {Object.keys(props.values).map((variant, index) => (
+      {Object.keys(props.values).map((variant, index) => (
         <ProductVariant
-          key={index}
+          key={variant}
+          id={variant}
           index={index}
           handleChange={props.handleChange}
           handleBlur={props.handleBlur}
@@ -25,9 +26,12 @@ const ProductVariants = props => {
           handleReset={props.handleReset}
           variant={variant}
         />
-      ))} */}
+      ))}
       <div style={{ padding: 24, textAlign: "right" }}>
-        <Button icon="plus" onClick={()=>context.addProductVariant()}> Variant</Button>
+        <Button icon="plus" onClick={() => context.addProductVariant()}>
+          {" "}
+          Variant
+        </Button>
       </div>
     </Card>
   );

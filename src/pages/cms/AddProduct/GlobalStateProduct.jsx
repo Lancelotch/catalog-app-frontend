@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import uuidv4 from 'uuid/v4';
 import _ from 'lodash';
 const ProductContext = React.createContext();
@@ -24,10 +24,12 @@ const GlobalStateProduct = props => {
   };
 
   const [state, setState] = useState(initialValues);
+
   const addProductVariant = () => {
+    const tempVariants = {...state};
     setState({
       ...state,
-      variants: {...state.variants, productVariant}
+      variants: {...tempVariants.variants, ...productVariant}
     });
   };
 
