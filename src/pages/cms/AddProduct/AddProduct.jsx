@@ -1,12 +1,15 @@
-import React, {Fragment} from 'react';
-import FormProduct from '../../../containers/FormProduct/FormProduct';
+import React, { Fragment } from "react";
+import FormProduct from "../../../containers/FormProduct/FormProduct";
+import GlobalStateProduct from "./GlobalStateProduct";
 
 const AddProduct = () => {
-    return(
-        <Fragment>
-            <FormProduct/>
-        </Fragment>
-    )
-}
+  return (
+    <Fragment>
+      <GlobalStateProduct>
+        <FormProduct />
+      </GlobalStateProduct>
+    </Fragment>
+  );
+};
 
 export default AddProduct;

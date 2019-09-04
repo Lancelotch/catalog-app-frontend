@@ -18,12 +18,12 @@ const Upload = props => {
           <div className="cd-top-icon">
             <Icon
               type="camera"
-              onClick={() => props.editImage(props.indexVariant, props.index)}
+              onClick={() => props.editImage(props.name)}
               className="cd-camera-icon"
             />
             <Icon
               type="delete"
-              onClick={() => props.remove(props.index, props.imageUrl)}
+              onClick={() => props.remove(props.name)}
               className="cd-delete-icon"
             />
           </div>
@@ -39,11 +39,11 @@ const Upload = props => {
           <div className="cd-top-icon">
             <Icon
               type="camera"
-              onClick={() => props.editImage(props.index)}
+              onClick={() => props.editImage(props.name)}
               className="cd-camera-icon"
             />
             <Icon
-              onClick={() => props.remove(props.index)}
+              onClick={() => props.remove(props.name)}
               type="delete"
               className="cd-delete-icon"
             />
@@ -55,7 +55,7 @@ const Upload = props => {
           ) : null}
           <Button
             width="100%"
-            onClick={() => props.changeDefault(props.index, props)}
+            onClick={() => props.changeDefault(props.name)}
             className={
               props.type === "default"
                 ? "cd-btn-upload"
